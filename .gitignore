@@ -1,0 +1,7 @@
+*.log
+*.swp
+.sass-cache
+/node_modules
+/bower_components
+/assets/css/app.css
+/assets/js/main.js

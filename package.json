@@ -1,0 +1,25 @@
+{
+  "name": "rocket-fuel",
+  "version": "4.1.0",
+  "description": "A powerful starter theme built & tested by the Launch Brigade team.",
+  "author": "Launch Brigade",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "http://git.launchbrigade.com/launch-brigade/rocket-fuel.git"
+  },
+  "bugs": {
+    "url": "http://git.launchbrigade.com/launch-brigade/rocket-fuel/issues"
+  },
+  "dependencies": {
+    "browser-sync": "*",
+    "browserify": "9.0.4",
+    "gulp": "*",
+    "gulp-autoprefixer": "*",
+    "gulp-sass": "2.0.4",
+    "gulp-uglify": "^1.1.0",
+    "gulp-util": "*",
+    "minimist": "*",
+    "vinyl-transform": "^1.0.0"
+  }
+}
