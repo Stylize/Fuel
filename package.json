@@ -1,25 +1,32 @@
 {
-  "name": "rocket-fuel",
-  "version": "4.1.0",
-  "description": "A powerful starter theme built & tested by the Launch Brigade team.",
-  "author": "Launch Brigade",
-  "private": true,
+  "name": "my-gulp",
+  "version": "1.0.0",
+  "description": "This is my gulpfile",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "repository": {
     "type": "git",
-    "url": "http://git.launchbrigade.com/launch-brigade/rocket-fuel.git"
+    "url": "git+https://github.com/werevamp/my-gulp.git"
   },
+  "author": "",
+  "license": "ISC",
   "bugs": {
-    "url": "http://git.launchbrigade.com/launch-brigade/rocket-fuel/issues"
+    "url": "https://github.com/werevamp/my-gulp/issues"
   },
+  "homepage": "https://github.com/werevamp/my-gulp#readme",
   "dependencies": {
-    "browser-sync": "*",
-    "browserify": "9.0.4",
-    "gulp": "*",
-    "gulp-autoprefixer": "*",
-    "gulp-sass": "2.0.4",
-    "gulp-uglify": "^1.1.0",
-    "gulp-util": "*",
-    "minimist": "*",
-    "vinyl-transform": "^1.0.0"
+    "browser-sync": "^2.10.1",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-jshint": "^2.0.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.0.1",
+    "gulp-sass": "^2.1.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-util": "^3.0.7",
+    "jshint": "^2.9.1",
+    "require-dir": "^0.3.0"
   }
 }

@@ -1,7 +1,7 @@
 {
-  "name": "rocketfuelchild",
+  "name": "fuel-child",
   "version": "4.1.0",
-  "homepage": "http://git.launchbrigade.com/launch-brigade/rocket-fuel",
+  "homepage": "",
   "private": true,
   "ignore": [
     "**/.*",
@@ -9,6 +9,6 @@
     "bower_components"
   ],
   "dependencies": {
-    "foundation": "5.5.1"
+    "foundation-sites": "~6.1.1"
   }
 }

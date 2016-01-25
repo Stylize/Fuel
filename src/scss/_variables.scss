@@ -6,9 +6,6 @@
 // If you want to set the base font-size
 //$rem-base: 16px;
 
-// Get access to Foundation functions
-@import "foundation/functions";
-
 // Functions
 @function test($test) {
 	@return $test;

@@ -21,11 +21,4 @@ $('a[href*=#]:not([href=#])').click(function(event) {
 	/**
 	 * Main Javascript file for the theme
 	 */
-
-	$(document).foundation({
-		topbar: {
-			sticky_class: 'sticky-nav',
-			mobile_show_parent_link: true
-		}
-	});
 })(jQuery);

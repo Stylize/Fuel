@@ -4,20 +4,20 @@
  * - Sidebar
  * - Custom Walkers
  */
-require_once( trailingslashit( get_template_directory() ) . 'library/class-rfuel.php' );
-$theme = new RFuel();
 
-/* Do theme setup on the 'after_setup_theme' hook. */
-add_action( 'after_setup_theme', array( $theme, 'setup' ) );
+spl_autoload_register('autoloader');
+function autoloader($class_name)
+{
+	$class_name = ltrim($class_name, '\\');
 
-function rfuel_get_navbar_menu() {
-	global $theme;
-
-	return $theme->get_navbar_menu();
+	if (strpos($class_name, 'fuel') !== 0)
+		return;
+	$path = 'library' . DIRECTORY_SEPARATOR;
+	$class_name = str_replace('fuel\\', '', $class_name);
+	require_once($path . $class_name . '.php');
 }
 
-function rfuel_get_archive_content() {
-	global $theme;
+$fuel_theme = new fuel\main();
 
-	return $theme->get_archive_content();
-}
+//[> Do theme setup on the 'after_setup_theme' hook. <]
+add_action( 'after_setup_theme', array( $fuel_theme, 'setup' ) );

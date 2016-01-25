@@ -1,26 +1,26 @@
-						<?php do_action('rfuel_loop_after'); ?>
+						<?php do_action('fuel_loop_after'); ?>
 
 					</div><!-- /.content -->
 
-					<?php do_action('rfuel_content_after'); ?>
+					<?php do_action('fuel_content_after'); ?>
 
 				</div><!-- /.container -->
 
 			</main><!-- /#main -->
 
-			<?php do_action('rfuel_footer_before'); ?>
+			<?php do_action('fuel_footer_before'); ?>
 
 			<footer id="footer" role="contentinfo">
 
-				<?php do_action('rfuel_footer'); ?>
+				<?php do_action('fuel_footer'); ?>
 
 			</footer> <!-- end footer -->
 
-			<?php do_action('rfuel_footer_after'); ?>
+			<?php do_action('fuel_footer_after'); ?>
 
 		</div> <!-- end #container -->
 
-		<?php do_action('rfuel_container_after'); ?>
+		<?php do_action('fuel_container_after'); ?>
 
 		<!-- WordPress footer functions -->
 		<?php wp_footer(); ?>

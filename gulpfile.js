@@ -1,4 +1,3 @@
-/**
- * Pull in Gulp tasks from gulp/index.js
- */
-require('./gulp');
+var requireDir = require('require-dir');
+
+requireDir('./gulp/tasks', { recurse: true });
