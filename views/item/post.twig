@@ -1,0 +1,25 @@
+<header class="article__header">
+
+	<h3 class="article__title">
+		<a href="{{post.link}}" rel="bookmark">{{post.title}}</a>
+	</h3>
+
+	{% if post.thumbnail %}
+	<div class="article__featured-image">
+		<img src="{{post.thumbnail.src}}" alt="{{post.thumbnail.alt}}">
+	</div>
+	{% endif %}
+</header>
+
+<section class="article__content">
+	{{post.excerpt}}
+</section>
+
+<footer class="article__footer">
+	<a class="read-more" href="{{post.link}}">Read More</a>
+	<p class="article__meta">
+		By: {{post.author}}<?php the_author_posts_link(); ?>
+		| {{post.date|date}}
+		| {{ post.terms('category') | join(', ') }}
+	</p>
+</footer>

@@ -9,7 +9,7 @@ class acf {
 
 	public static function init()
 	{
-		self::$acf_json_path = get_template_directory() . '/library/plugins/acf-fields';
+		self::$acf_json_path = get_template_directory() . '/assets/json/acf-fields';
 
 		if ( ! self::$initiated ) {
 			self::init_hooks();

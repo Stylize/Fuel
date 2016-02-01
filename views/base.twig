@@ -1,0 +1,30 @@
+	{% include 'partials/html-header.twig' %}
+
+	<body class="{{body_class}}" data-template="base.twig">
+		<header class="header">
+			{% block header %}
+				{% include 'partials/header-nav.twig' %}
+			{% endblock %}
+		</header>
+
+		<section id="content" role="main" class="content-wrapper">
+			<div class="wrapper {{sidebar_class}}">
+				{% block content %}
+					Sorry, no content
+				{% endblock %}
+			</div>
+			{% if sidebar %}
+				<aside class="layout-sidebar">
+					{{sidebar}}
+				</aside>
+			{% endif %}
+		</section>
+
+		{% block footer %}
+			<footer id="footer">
+				{% include 'partials/footer.twig' %}
+			</footer>
+			{{ function('wp_footer') }}
+		{% endblock %}
+	</body>
+</html>

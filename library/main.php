@@ -4,7 +4,7 @@ namespace fuel;
 
 //require_once( $dir_path . 'class-navbar-walker.php' ); // Navbar_Walker
 
-class main {
+class main extends \TimberSite {
 
 	/**
 	 * Theme setup
@@ -17,7 +17,6 @@ class main {
 
 		//Advanced custom fields integration to theme
 		add_action( 'init', array( __NAMESPACE__ . '\\acf', 'init' ) );
-		add_action( 'init', array( __NAMESPACE__ . '\\views', 'init' ) );
 
 		// Register plugins
 		add_action( 'tgmpa_register', array( $this, 'register_plugins' ) );
@@ -39,17 +38,22 @@ class main {
 		add_filter( 'body_class', array( $this, 'add_body_class_sidebar' ) );
 
 		// Content Actions
-		add_action( __NAMESPACE__ . "_loop_after", array( $this, 'get_pagination' ) );
 		add_action( __NAMESPACE__ . "_content_after", array( $this, 'get_sidebar_primary' ) );
 
-		// Footer Actions
-		add_action( __NAMESPACE__ . "_footer", array( $this, 'get_sidebar_subsidiary' ) );
+		add_filter( 'timber_context', array( $this, 'add_to_context' ) );
+	}
+
+	function add_to_context( $context )
+	{
+		$context['menu'] = new \TimberMenu('primary');
+		$context['site'] = $this;
+		return $context;
 	}
 
 	/**
 	 * Is sidebar registered and active
 	 * @param  string  $id ID name of sidebar
-	 * @return boolean     True = registered and active
+	 * @return boolean True = registered and active
 	 */
 	private function is_active_sidebar( $id )
 	{
@@ -63,7 +67,7 @@ class main {
 	}
 
 	/**
-	 * Tegister plugins with TGMPA
+	 * Register Plugs
 	 */
 	public function register_plugins()
 	{
@@ -83,6 +87,11 @@ class main {
 				'name' => 'Developer',
 				'slug' => 'developer',
 				'required' => false
+			),
+			array(
+				'name' => 'Timber',
+				'slug' => 'timber',
+				'required' => true
 			)
 		);
 
@@ -135,25 +144,6 @@ class main {
 			'before_title'  => '<h4 class="widget-title">',
 			'after_title'   => '</h4>'
 		));
-
-		// Subsidiary
-		register_sidebar(array(
-			'name'          => 'Subsidiary',
-			'id'            => 'subsidiary',
-			'description'   => 'Footer widget-area content.',
-			'class'         => 'subsidiary widgets',
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h4 class="widget-title">',
-			'after_title'   => '</h4>'
-		));
-	}
-
-	public function sidebars_template_home()
-	{
-		if ( is_page_template( 'views/templates/home.php' ) ) {
-			unregister_sidebar( 'primary' );
-		}
 	}
 
 	public function add_body_class_sidebar( $classes )
@@ -162,37 +152,13 @@ class main {
 			$classes[] = 'aside-primary';
 		}
 
-		if ( $this->is_active_sidebar( 'subsidiary' ) ) {
-			$classes[] = 'aside-subsidiary';
-		}
-
 		return $classes;
 	}
 
-	public function get_pagination() {
-		if ( get_previous_posts_link() or get_next_posts_link() ) {
-			get_template_part( 'partials/loop', 'pagination' );
-		}
-	}
-
-	public function get_sidebar_primary() {
+	public function get_sidebar_primary()
+	{
 		if ( $this->is_active_sidebar( 'primary' ) ) {
 			get_sidebar( 'primary' );
 		}
-	}
-
-	public function get_sidebar_subsidiary() {
-		if ( $this->is_active_sidebar( 'subsidiary' ) ) {
-			get_sidebar( 'subsidiary' );
-		}
-	}
-
-	/**
-	 * Get content template for archive based on post-type.
-	 * @global $post
-	 */
-	public function get_archive_content() {
-		$post_type = get_post_type();
-		get_template_part( 'content', $post_type );
 	}
 }

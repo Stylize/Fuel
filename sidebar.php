@@ -1,5 +1,4 @@
-<aside id="primary" class="widget-area sidebar" role="complementary">
+<?php
 
-	<?php dynamic_sidebar( 'primary' ); ?>
-
-</aside>
+//TODO:: need to add sidebar.twig
+Timber::render( array( 'partials/sidebar.twig' ), $data );

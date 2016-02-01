@@ -1,0 +1,8 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	{% for post in posts %}
+		{% include ['item/'~post.post_type~'.twig', 'item/content.twig'] %}
+	{% endfor %}
+	{% include 'partials/pagination.twig' %}
+{% endblock %}

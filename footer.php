@@ -1,30 +1,14 @@
-						<?php do_action('fuel_loop_after'); ?>
+<?php
+/*
+ * Third party plugins that hijack the theme will call wp_footer() to get the footer template.
+ * We use this to end our output buffer (started in header.php) and render into the view/page-plugin.twig template.
+ */
 
-					</div><!-- /.content -->
-
-					<?php do_action('fuel_content_after'); ?>
-
-				</div><!-- /.container -->
-
-			</main><!-- /#main -->
-
-			<?php do_action('fuel_footer_before'); ?>
-
-			<footer id="footer" role="contentinfo">
-
-				<?php do_action('fuel_footer'); ?>
-
-			</footer> <!-- end footer -->
-
-			<?php do_action('fuel_footer_after'); ?>
-
-		</div> <!-- end #container -->
-
-		<?php do_action('fuel_container_after'); ?>
-
-		<!-- WordPress footer functions -->
-		<?php wp_footer(); ?>
-
-	</body>
-
-</html> <!-- end page. what a ride! -->
+$timberContext = $GLOBALS['timberContext'];
+if ( ! isset( $timberContext ) ) {
+	throw new \Exception( 'Timber context not set in footer.' );
+}
+$timberContext['content'] = ob_get_contents();
+ob_end_clean();
+$templates = array( 'partials/page-plugin.twig' );
+Timber::render( $templates, $timberContext );
