@@ -2,19 +2,13 @@
 
 namespace fuel;
 
-//require_once( $dir_path . 'class-navbar-walker.php' ); // Navbar_Walker
-
 class main extends \TimberSite {
 
 	/**
 	 * Theme setup
 	 */
-	public function setup() {
-		// Add Theme support
-		add_theme_support( 'html5' );
-		add_theme_support( 'automatic-feed-links' );
-		add_theme_support( 'post-thumbnails' );
-
+	public function setup()
+	{
 		//Advanced custom fields integration to theme
 		add_action( 'init', array( __NAMESPACE__ . '\\acf', 'init' ) );
 
@@ -30,17 +24,18 @@ class main extends \TimberSite {
 		//Allowed mime types
 		add_filter('upload_mimes', array( $this, 'cc_mime_types' ));
 
-		// Widget Areas
-		add_action( 'widgets_init', array( $this, 'register_sidebars' ) );
-		add_action( 'wp', array( $this, 'sidebars_template_home' ) );
+		//Blog Excerpt Modifications
+		add_filter( 'excerpt_more', array( $this, 'new_excerpt_more' ) );
+		add_filter( 'excerpt_length', array( $this, 'new_excerpt_length' ) );
 
-		// Head Actions
-		add_filter( 'body_class', array( $this, 'add_body_class_sidebar' ) );
-
-		// Content Actions
-		add_action( __NAMESPACE__ . "_content_after", array( $this, 'get_sidebar_primary' ) );
-
+		//Timber template modifications
 		add_filter( 'timber_context', array( $this, 'add_to_context' ) );
+
+		//ACF filter
+		add_filter( 'acf/settings/load_json', array( $this, 'acf_json_load_path' ) );
+
+		//Move YoastSEO plugin to a lower priority
+		add_filter( 'wpseo_metabox_prio', function() { return 'low';});
 	}
 
 	function add_to_context( $context )
@@ -50,20 +45,10 @@ class main extends \TimberSite {
 		return $context;
 	}
 
-	/**
-	 * Is sidebar registered and active
-	 * @param  string  $id ID name of sidebar
-	 * @return boolean True = registered and active
-	 */
-	private function is_active_sidebar( $id )
+	public function acf_json_load_path( $paths )
 	{
-		global $wp_registered_sidebars;
-
-		if ( array_key_exists( $id, $wp_registered_sidebars ) && is_active_sidebar( $id ) ) {
-			return true;
-		} else {
-			return false;
-		}
+		$paths[0] = get_template_directory() . '/assets/json/acf-fields';
+		return $paths;
 	}
 
 	/**
@@ -72,17 +57,6 @@ class main extends \TimberSite {
 	public function register_plugins()
 	{
 		$plugins = array(
-			//array(
-				//'name'               => 'Advanced Custom Fields Pro', // The plugin name.
-				//'slug'               => 'advanced-custom-fields-pro', // The plugin slug (typically the folder name).
-				//'source'             => get_stylesheet_directory() . '/lib/plugins/tgm-example-plugin.zip', // The plugin source.
-				//'required'           => true, // If false, the plugin is only 'recommended' instead of required.
-				//'version'            => '', // E.g. 1.0.0. If set, the active plugin must be this version or higher. If the plugin version is higher than the plugin version installed, the user will be notified to update the plugin.
-				//'force_activation'   => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
-				//'force_deactivation' => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins.
-				//'external_url'       => '', // If set, overrides default API URL and points to an external URL.
-				//'is_callable'        => '', // If set, this callable will be be checked for availability to determine if a plugin is active.
-			//),
 			array(
 				'name' => 'Developer',
 				'slug' => 'developer',
@@ -120,45 +94,20 @@ class main extends \TimberSite {
 		wp_enqueue_script( 'main', get_template_directory_uri().'/assets/js/main.js', array('jquery'), '1.0.0', true );
 	}
 
+	public function new_excerpt_more($more)
+	{
+		return ' &hellip;';
+	}
+
+	public function new_excerpt_length($length)
+	{
+		return 20;
+	}
 	/**
 	 * Register WP menus
 	 */
 	public function register_menus()
 	{
 		register_nav_menu( 'primary', 'Primary' );
-	}
-
-	/**
-	 * Register WP widget sidebars
-	 */
-	public function register_sidebars()
-	{
-		// Primary
-		register_sidebar(array(
-			'name'          => 'Primary',
-			'id'            => 'primary',
-			'description'   => 'Main widget-area aside content.',
-			'class'         => 'aside widgets',
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h4 class="widget-title">',
-			'after_title'   => '</h4>'
-		));
-	}
-
-	public function add_body_class_sidebar( $classes )
-	{
-		if ( $this->is_active_sidebar( 'primary' ) ) {
-			$classes[] = 'aside-primary';
-		}
-
-		return $classes;
-	}
-
-	public function get_sidebar_primary()
-	{
-		if ( $this->is_active_sidebar( 'primary' ) ) {
-			get_sidebar( 'primary' );
-		}
 	}
 }
