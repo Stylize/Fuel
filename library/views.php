@@ -2,13 +2,13 @@
 
 namespace fuel;
 
-class views {
-
+class views
+{
 	private static $initiated = false;
 
 	public static function init()
 	{
-		if ( ! self::$initiated ) {
+		if (! self::$initiated) {
 			self::init_hooks();
 		}
 	}
@@ -16,6 +16,5 @@ class views {
 	public static function init_hooks()
 	{
 		self::$initiated = true;
-
 	}
 }
