@@ -10,4 +10,4 @@
  */
 
 $context = Timber::get_context();
-Timber::render( 'partials/404.twig', $context );
+Timber::render('partials/404.twig', $context);

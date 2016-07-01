@@ -1,6 +1,6 @@
 var source = './src',
 		destination = './assets',
-		testDomain = 'fuel.wp',
+		proxy = 'fuel.wp',
 		bowerDir = './assets/components',
 		externalCssPaths = [
 			bowerDir + '/foundation-sites/scss'
@@ -17,6 +17,6 @@ module.exports = {
 		dest: destination + '/js/'
 	},
 	browserSync: {
-		proxy: 'fuel.wp'
+		proxy: proxy
 	}
 };

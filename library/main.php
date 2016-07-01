@@ -45,7 +45,7 @@ class main extends \TimberSite
 		return $context;
 	}
 
-	public function acf_json_load_path( $paths )
+	public function acf_json_load_path($paths)
 	{
 		$paths[0] = get_template_directory() . '/assets/json/acf-fields';
 		return $paths;

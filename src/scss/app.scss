@@ -13,5 +13,6 @@
 	@include foundation-everything($flex: true);
 
 // App Components
-	@import "header-nav";
+	@import "header";
+	@import "variables";
 
