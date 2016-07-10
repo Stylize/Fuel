@@ -12,8 +12,9 @@ module.exports = {
 		dest: destination + '/css/',
 		includePaths: externalCssPaths || []
 	},
-	javascript: {
-		src: source + '/js/**/*.js',
+		javascript: {
+		file: 'main.js',
+		src: source + '/js/main.js',
 		dest: destination + '/js/'
 	},
 	browserSync: {

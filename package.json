@@ -1,32 +1,42 @@
 {
-  "name": "my-gulp",
-  "version": "1.0.0",
-  "description": "This is my gulpfile",
-  "main": "gulpfile.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/werevamp/my-gulp.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/werevamp/my-gulp/issues"
-  },
-  "homepage": "https://github.com/werevamp/my-gulp#readme",
-  "dependencies": {
-    "browser-sync": "^2.13.0",
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^3.1.0",
-    "gulp-jshint": "^2.0.1",
-    "gulp-notify": "^2.2.0",
-    "gulp-plumber": "^1.1.0",
-    "gulp-sass": "^2.3.2",
-    "gulp-sourcemaps": "^1.6.0",
-    "gulp-util": "^3.0.7",
-    "jshint": "^2.9.2",
-    "require-dir": "^0.3.0"
-  }
+	"name": "my-gulp",
+	"version": "1.0.0",
+	"description": "This is my gulpfile",
+	"main": "gulpfile.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/werevamp/my-gulp.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/werevamp/my-gulp/issues"
+	},
+	"homepage": "https://github.com/werevamp/my-gulp#readme",
+	"browserify": {
+		"transform": ["babelify"]
+	},
+	"dependencies": {
+		"browser-sync": "^2.13.0",
+		"gulp": "^3.9.1",
+		"gulp-autoprefixer": "^3.1.0",
+		"gulp-cssnano": "^2.1.2",
+		"gulp-notify": "^2.2.0",
+		"gulp-plumber": "^1.1.0",
+		"gulp-sass": "^2.3.2",
+		"gulp-sourcemaps": "^1.6.0",
+		"gulp-util": "^3.0.7",
+		"require-dir": "^0.3.0"
+	},
+	"devDependencies": {
+		"babel-preset-es2015": "^6.9.0",
+		"babelify": "^7.3.0",
+		"browserify": "^13.0.1",
+		"vinyl-buffer": "^1.0.0",
+		"vinyl-source-stream": "^1.1.0",
+		"watchify": "^3.7.0"
+	}
 }

@@ -1,24 +1,11 @@
-(function($) {
-/**
- * Smoothly animates internal page links.
- * @return {null}
- */
-$('a[href*=#]:not([href=#])').click(function(event) {
-	if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-		var target = $(this.hash);
-		target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-		if (target.length) {
-			$('html,body').animate({
-				scrollTop: target.offset().top
-			}, 400);
-			event.preventDefault();
-		}
-	}
-});
-})(jQuery);
+//import $ from 'jquery';
+//import jQuery from 'jquery';
 
 (function($) {
-	/**
-	 * Main Javascript file for the theme
-	 */
+"use strict";
+
+	const world = 'hello world';
+
+	//$('body').css({'background': 'red'});
+	console.log(world);
 })(jQuery);

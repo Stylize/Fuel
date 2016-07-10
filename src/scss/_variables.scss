@@ -6,11 +6,6 @@
 // If you want to set the base font-size
 //$rem-base: 16px;
 
-// Functions
-@function test($test) {
-	@return $test;
-}
-
 // Variables
 $primary-color: #ff0000;
 $topbar-sticky-class: ".sticky-nav";
