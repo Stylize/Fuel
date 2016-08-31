@@ -9,6 +9,8 @@ class main extends \TimberSite
 	 */
 	public function setup()
 	{
+		add_theme_support('post-thumbnails');
+
 		//Advanced custom fields integration to theme
 		add_action('init', array(__NAMESPACE__ . '\\acf', 'init'));
 
